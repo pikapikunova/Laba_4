@@ -32,7 +32,7 @@ namespace WindowsFormsApp3
             blackCat.FillMartix(fild1.circ);
             button1.Enabled = false;
             Cursor.Position = new Point(45, 45);
-            g.DrawImage(blackCat.im, 266,243, 38,38);
+            g.DrawImage(blackCat.im, 266, 243, 38, 38);
 
         }
 
@@ -46,12 +46,12 @@ namespace WindowsFormsApp3
             int prev = curr;
             if ((curr == blackCat.BfsAlg(curr)) & (curr <= 109) & (curr != 22) & (curr != 23) & (curr != 33) & (curr != 34) & (curr != 44) & (curr
                 != 45) & (curr != 55) & (curr != 56) & (curr != 66) & (curr != 67) & (curr != 77) & (curr != 78) & (curr
-                != 88) & (curr != 89) & (curr != 99) & (curr != 100) & (curr >= 13)) 
+                != 88) & (curr != 89) & (curr != 99) & (curr != 100) & (curr >= 13))
                 MessageBox.Show("Вы выиграли!");
             else
             {
                 if (curr == blackCat.BfsAlg(curr))
-                     MessageBox.Show("Вы проиграли!");
+                    MessageBox.Show("Вы проиграли!");
                 else
                 {
                     curr = blackCat.BfsAlg(curr);
@@ -83,12 +83,12 @@ namespace WindowsFormsApp3
             {
                 Mouse mouse = new Mouse();
                 mouse.rightClick();
-            }
-        }   
-    }
 
-    public class Mouse
-    {
+            }
+        }
+
+        public class Mouse
+        {
             [DllImport("User32.Dll")]
             private static extern void mouse_event(UInt32 dwFlags, UInt32 dx, UInt32 dy, UInt32 dwData, IntPtr dwExtraInfo);
             private const UInt32 RIGHTDOWN = 0x0008;
@@ -98,7 +98,7 @@ namespace WindowsFormsApp3
             {
                 mouse_event(RIGHTDOWN | RIGHTUP, 0, 0, 0, IntPtr.Zero);
             }
-    }
+        }
 
 
 
@@ -108,12 +108,12 @@ namespace WindowsFormsApp3
 
             bool[,] matrix = new bool[122, 122];
 
-        public void Motion(Circle[,] circ, int x, int y, Image im, Graphics g)
-        {
-            g.DrawImage(im,circ[x, y].x+2, circ[x, y].y+3,38,38);
-        }
+            public void Motion(Circle[,] circ, int x, int y, Image im, Graphics g)
+            {
+                g.DrawImage(im, circ[x, y].x + 2, circ[x, y].y + 3, 38, 38);
+            }
 
-        public int BfsAlg(int start)
+            public int BfsAlg(int start)
             {
                 int[,] rebra = new int[122, 122];
                 int[] predsessors = new int[122];
@@ -436,30 +436,7 @@ namespace WindowsFormsApp3
                 return i1;
             }
 
-
-            public static System.Drawing.Drawing2D.GraphicsPath BuildTransparencyPath(Image im)
-            {
-                int x;
-                int y;
-                Bitmap bmp = new Bitmap(im);
-                System.Drawing.Drawing2D.GraphicsPath gp = new System.Drawing.Drawing2D.GraphicsPath();
-                Color mask = bmp.GetPixel(0, 0);
-
-                for (x = 0; x <= bmp.Width - 1; x++)
-                {
-                    for (y = 0; y <= bmp.Height - 1; y++)
-                    {
-                        if (!bmp.GetPixel(x, y).Equals(mask))
-                        {
-                            gp.AddRectangle(new Rectangle(x, y, 1, 1));
-                        }
-                    }
-                }
-                bmp.Dispose();
-                return gp;
-            }
         }
-
         public class Circle
         {
             public bool Flag;
@@ -601,5 +578,7 @@ namespace WindowsFormsApp3
 
 
     }
+}
+    
 
    
